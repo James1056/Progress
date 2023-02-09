@@ -1,9 +1,9 @@
-# Project Proposal:
-## Progress,
-###### Social Media focussing on people who go to the gym:
+# Project Proposal
+## Progress
+###### Social Media focussing on people who go to the gym
 
 
-## Description:
+## Description
   "Progress" is a platform which allows people of all abilities at the gym to talk to one another 
   either to help each other progress with their fitness, to motivate one another, to find a workout
   partner and develop. 
