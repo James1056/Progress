@@ -1,6 +1,6 @@
-#Project Proposal:
-##Progress,
-######Social Media focussing on people who go to the gym:
+# Project Proposal:
+## Progress,
+###### Social Media focussing on people who go to the gym:
 
 
 Description:
