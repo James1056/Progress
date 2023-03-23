@@ -10,7 +10,7 @@ html, body{
 body, ul, li, h1, h2, a{
     margin: 0;
     padding:0;
-    font-family: arial;
+    font-family: sans-serif;
 }
 
 .page-container {
@@ -23,19 +23,18 @@ body, ul, li, h1, h2, a{
 
 header{
     background-color: #191002;
-    padding: 15px;
+    padding: 20px;
     position:fixed;
     width: 100%;
     z-index: 1;
     top: 0;
     left: 0;
-    height: 8%;
+    height: 9.3%;
 }
 
 header h1{
     color: #ffffff;
     font-size: 1.5em;
-    margin-left: 5px;
 }
 
 header h1 a{
