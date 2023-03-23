@@ -38,6 +38,57 @@ header h1{
     margin-left: 5px;
 }
 
+#menu {
+    position: absolute;
+    width: 210px;
+    right: 0;
+    top: 25%;
+    z-index: 2;
+}
+
+.ham-button {
+    background-image: url('img/hamburger.png');
+    background-size: cover;
+    background-color: #191002;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-left: 150px;
+    
+}
+  
+.hamburger {
+    position: relative;
+    display: inline-block;
+}
+  
+.drop-cont {
+    display: none;
+    position: absolute;
+    background-color: #191002;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.drop-cont a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+.drop-cont a:hover {
+    background-color: white;
+    color: black;
+}
+  
+.hamburger:hover .drop-cont {
+    display: block;
+    margin-left: 50px;
+}
+
 body{
     background-color: #a1a1a1;
 }
@@ -155,7 +206,7 @@ main{
 .post-card > a > span{
     position:absolute; 
     width:100%;
-    height:60%;
+    height:100%;
     left: 0;
     bottom:0;
     z-index: 1;
@@ -227,6 +278,40 @@ main{
     left: 0;
 }
 
+.video-container{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 80%;
+    margin-top: 3%;
+}
+
+.video-window{
+    position: relative;
+    width: 80%;
+    height: 75vh;
+    font-size: 18px;
+    overflow: hidden;
+    border: 4px solid #ffffff;
+    border-bottom: 4px solid #a11b14;
+    margin-bottom: 3vh;
+}
+
+.video-window > img{
+    position:absolute; 
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+}
+
+.description{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 85%;
+    padding: 15px 2%;
+    font-size: 18px;
+}
+
 footer{
     background-color: #414141;
     position: absolute; 
@@ -246,4 +331,9 @@ footer > p{
 .forum-card:hover{
     position: relative;
     top: -4px;
+}
+
+.post-card:hover{
+    position: relative;
+    right: -4px;
 }
