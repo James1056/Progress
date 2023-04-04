@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Info Detail</title>
+        <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <style>
+            .card-container {
+                background-color: #f8f9fa;
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <h2>Progress</h2>
+            <div class="hamburger">
+                <button class="ham-button"></button>
+                <div class="drop-cont">
+                    <a href="#">Questions</a>
+                    <a href="partner_requests.html">Partner Requests</a>
+                    <a href="#">Find a Trainer</a>
+                    <a href="#">Splits</a>
+                    <a href="#">Meal Plan</a>
+                    <a href="#">Home</a>
+                    <a href="#">User Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 class="card-title"><span th:text="${info.title}"></span></h2>
+                    <p class="card-text"><span th:text="${info.description}"></span></p>
+                    <img class="card-img-top" th:src="@{${info.image}}" alt="Info Image" style="max-width: 300px;">
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <a href="/info/all" class="button-24">Back to List</a>
+            <a th:href="@{/info/update/id={id}(id=${info.id})}" class="button-24">Edit</a>
+            <a th:href="@{/info/delete/id={id}(id=${info.id})}" class="button-24">Delete</a>
+        </div>
+    </body>
+</html>

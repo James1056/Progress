@@ -1,0 +1,403 @@
+body {
+    background-color: #f2f2f2;
+    background-image: linear-gradient(to bottom, #f2f2f2, #c4c4c4);
+}
+
+.goat-bg {
+    background-image: url('https://em-content.zobj.net/thumbs/120/apple/325/goat_1f410.png');
+    background-repeat: repeat;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #191002;
+}
+
+#menu {
+    width: 210px;
+}
+
+.ham-button {
+    background-image: url('/images/hamburger.png');
+    background-size: cover;
+    background-color: #191002;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-left: 150px;
+
+}
+
+.hamburger {
+    position: relative;
+    display: inline-block;
+}
+
+.drop-cont {
+    display: none;
+    position: absolute;
+    background-color: #191002;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.drop-cont a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.drop-cont a:hover {
+    background-color: white;
+    color: black;
+}
+
+.hamburger:hover .drop-cont {
+    display: block;
+    margin-left: 50px;
+}
+
+#header>h2 {
+    padding-left: 20px;
+    color: white;
+}
+
+/* CSS for profile container */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+/* CSS for profile image */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid #510d0a;
+    box-shadow: 0 0 10px #510d0a;
+    transition: all 0.3s ease-in-out;
+}
+
+/* CSS for profile image hover effect */
+.profile-image:hover {
+    width: 220px;
+    height: 220px;
+    box-shadow: 0 0 20px #510d0a;
+}
+
+/* CSS for profile name */
+.profile-name {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* CSS for profile description */
+.profile-description {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* CSS for profile stats */
+.profile-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* CSS for individual profile stat */
+.profile-stat {
+    text-align: center;
+}
+
+/* CSS for profile stat label */
+.profile-stat-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* CSS for profile stat value */
+.profile-stat-value {
+    font-size: 24px;
+}
+
+/* CSS for profile actions */
+.profile-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* CSS for individual profile action */
+.profile-action {
+    background-color: #191002;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* CSS for hover effect on profile action */
+.profile-action:hover {
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+/* Styles for gym information section */
+.gym-info {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 2cm;
+}
+
+.gym-info h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.gym-info p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 20px;
+    text-indent: 20px;
+}
+
+/* Styles for gym pictures section */
+.gym-pictures {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.gym-picture {
+    width: 30%;
+    margin-bottom: 20px;
+    float: left;
+    padding-right: 20px;
+}
+
+.gym-picture img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for gym calendar section */
+.gym-calendar {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 2.54cm;
+}
+
+.gym-calendar h3 {
+    font-size: 24px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.gym-calendar table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.gym-calendar th, .gym-calendar td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.gym-calendar th {
+    background-color: #f2f2f2;
+}
+
+/* Styling for current day and selected day */
+.gym-calendar td.today {
+    background-color: #ffcccc;
+}
+
+.gym-calendar td.selected {
+    background-color: #f3aa1f;
+}
+
+/* Styling for previous and next month's days */
+.gym-calendar .prev-month, .gym-calendar .next-month {
+    color: #ccc;
+}
+
+.gym-calendar .prev-month:hover, .gym-calendar .next-month:hover {
+    color: #333;
+    cursor: pointer;
+}
+
+/* Styling for current day and selected day */
+.gym-calendar .today {
+    font-weight: bold;
+}
+
+.gym-calendar .selected {
+    font-weight: bold;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header li {
+    margin-right: 20px;
+}
+
+header li:last-child {
+    margin-right: 0;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #ccc;
+}
+
+/* Main content */
+main {
+    padding: 40px;
+}
+
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post h2 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.post p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.post img {
+    max-width: 100%;
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+table {
+    background-color: white;
+    margin: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+.button-24 {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none; /* Add this line */
+}
+
+.button-24:hover,
+.button-24:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+}
+
+.button-24:active {
+    opacity: .5;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+
