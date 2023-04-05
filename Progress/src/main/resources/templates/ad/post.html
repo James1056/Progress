@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>Post</title>
+    <link rel="stylesheet" th:href="@{/css/stylecheck.css}"> 
+</head>
+<body>
+    <div id="header">
+        <h2><a href="index.html">Progress</a></h2>
+
+        <div id="menu">
+
+            <div class="hamburger" th:style="'background:url('+ @{/image/hamburger.jpg} +');'">
+                <button class="ham-button" ></button>
+                <div class="drop-cont">
+                    <a href="questions.html">Questions</a>
+                    <a href="partner_requests.html">Partner Requests</a>
+                    <a href="trainers.html">Find a Trainer</a>
+                    <a href="splits.html">Splits</a>
+                    <a href="gym_info.html">Gym Info</a>
+                    <a href="meal_plan.html">Meal Plan</a>
+                    <a href="user_info.html">Profile</a>
+                </div>
+            </div>      
+        </div>
+    </div> 
+
+    <div id="main">
+        <div id="title">
+            <h3>Create Post</h3>
+        </div>
+
+        <div class="postForm">
+            <form action="/trainers/create" method="post">
+
+                <label for="text"><b>Content for Post:<hr></b></label>
+                <textarea id="text" name="text" rows="5" cols="50" placeholder="What would you like to say?"></textarea>
+
+                <br>
+
+                <label for="fitnessLevel"><b>What level user can see this post?</b></label><br>
+                <div class="formRadio">
+                    <input type="radio" name="fitnessLevel" id="beginner" value="1">
+                    <label for="beginner">Beginner | </label>
+                    <input type="radio" name="fitnessLevel" id="intermediate" value="2">
+                    <label for="intermediate">Intermediate | </label>
+                    <input type="radio" name="fitnessLevel" id="Advanced" value="3">
+                    <label for="Advanced">Advanced</label>
+                </div>
+
+                <br>
+
+                <!-- hardcoded trainerId at this point since login not implemented -->
+                <input type="hidden" name="trainerId" id="trainerId" value="4">
+
+                <input class="button" type="submit">
+
+                
+            </form>
+    </div>
+    </div>
+</body>
+</html>
