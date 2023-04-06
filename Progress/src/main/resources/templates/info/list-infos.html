@@ -8,6 +8,20 @@
         <style>
             table {
                 margin: 0 auto;
+                border-collapse: collapse;
+            }
+
+            table td, table th {
+                border: none;
+                padding: 10px;
+            }
+
+            table tr {
+                border-bottom: 1px solid #ddd;
+            }
+
+            table tr:last-child {
+                border-bottom: none;
             }
 
             .button-24 {
@@ -18,12 +32,14 @@
             th:first-child, td:first-child {
                 width: 10%;
             }
+
             th:nth-child(2), td:nth-child(2) {
                 width: 25%;
                 max-width: 300px;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
             th:nth-child(3), td:nth-child(3), th:last-child, td:last-child {
                 max-width: 350px;
                 overflow: hidden;
@@ -37,13 +53,7 @@
             <div class="hamburger">
                 <button class="ham-button"></button>
                 <div class="drop-cont">
-                    <a href="#">Questions</a>
                     <a href="partner_requests.html">Partner Requests</a>
-                    <a href="#">Find a Trainer</a>
-                    <a href="#">Splits</a>
-                    <a href="#">Meal Plan</a>
-                    <a href="#">Home</a>
-                    <a href="#">User Info</a>
                 </div>
             </div>
         </div>
@@ -51,18 +61,18 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Image</th>
+                    <th>Date Posted</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="info : ${infoList}">
-                    <td th:text="${info.id}"></td>
                     <td th:text="${info.title}"></td>
                     <td th:text="${#strings.length(info.description) > 250 ? #strings.substring(info.description, 0, 250) + '...' : info.description}"></td>
                     <td><img th:src="${info.image}" /></td>
+                    <td th:text="${info.date}"></td>
                     <td><a th:href="@{/info/id={id}(id=${info.id})}" class="button-24">View Details</a></td>
                 </tr>
             </tbody>

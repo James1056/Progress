@@ -41,13 +41,7 @@
             <div class="hamburger">
                 <button class="ham-button"></button>
                 <div class="drop-cont">
-                    <a href="#">Questions</a>
                     <a href="partner_requests.html">Partner Requests</a>
-                    <a href="#">Find a Trainer</a>
-                    <a href="#">Splits</a>
-                    <a href="#">Meal Plan</a>
-                    <a href="#">Home</a>
-                    <a href="#">User Info</a>
                 </div>
             </div>
         </div>
@@ -55,6 +49,10 @@
             <h1>Update announcement</h1>
             <form action="#" th:action="@{/info/update}" th:object="${info}"
                   method="post">
+                <div>
+                    <label for="Date Posted">Title:</label>
+                    <td><input type="text" th:field="*{id}" value="${product.id}" readonly /></td>
+                </div>
                 <div>
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" required th:value="${info.title}">

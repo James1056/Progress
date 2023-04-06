@@ -1,5 +1,6 @@
 package csc340.Progress.info;
 
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,12 +41,14 @@ public class InfoController {
 
     @PostMapping("/create")
     public String createInfo(Info info) {
+        info.setDate(new Date());
         infoService.saveInfo(info);
         return "redirect:/info/all";
     }
 
     @PostMapping("/update")
     public String updateInfo(Info info) {
+        info.setDate(new Date());
         infoService.saveInfo(info);
         return "redirect:/info/all";
     }
