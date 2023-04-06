@@ -19,6 +19,7 @@ body {
 }
 
 .ham-button {
+    background-image: url("/images/hamburger.png");
     background-size: cover;
     background-color: #191002;
     padding: 16px;
@@ -90,6 +91,18 @@ body {
     margin: 0px;
     color: white;
     font-size: 35px;
+}
+
+#title > h3 > a {
+    padding: 20px 0px 20px 0px;
+    margin: 0px;
+    color: #a11b14;
+    font-size: 35px;
+    text-decoration: none;
+}
+
+#title > h3 > a :hover{
+    text-decoration: underline;
 }
 
 .post-But {

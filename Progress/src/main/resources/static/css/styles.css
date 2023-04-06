@@ -119,6 +119,20 @@ main{
     text-decoration: underline;
 }
 
+#title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    width: 80%;
+}
+
+#title > h2 {
+    padding: 20px 0px 20px 0px;
+    margin: 0px;
+    color: white;
+    font-size: 35px;
+}
+
 .wrapper{
     position: relative;
     min-height: 85vh;    
@@ -340,4 +354,18 @@ footer > p{
 .post-card:hover{
     position: relative;
     right: -4px;
+}
+
+.post-But {
+    height: 30px;
+    width: 75px;
+    border: none;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.post-But:hover {
+    transform: scale(1.05);
 }

@@ -10,20 +10,20 @@
 </head>
 <body>
     <div id="header">
-        <h2><a href="index.html">Progress</a></h2>
+        <h2><a href="#">Progress</a></h2>
 
         <div id="menu">
 
             <div class="hamburger" th:style="'background:url('+ @{/image/hamburger.jpg} +');'">
                 <button class="ham-button" ></button>
                 <div class="drop-cont">
-                    <a href="questions.html">Questions</a>
-                    <a href="partner_requests.html">Partner Requests</a>
-                    <a href="trainers.html">Find a Trainer</a>
-                    <a href="splits.html">Splits</a>
-                    <a href="gym_info.html">Gym Info</a>
-                    <a href="meal_plan.html">Meal Plan</a>
-                    <a href="user_info.html">Profile</a>
+                    <a href="#">Questions</a>
+                    <a href="#">Partner Requests</a>
+                    <a href="#">Find a Trainer</a>
+                    <a href="#">Splits</a>
+                    <a href="#">Gym Info</a>
+                    <a href="#">Meal Plan</a>
+                    <a href="#">Profile</a>
                 </div>
             </div>      
         </div>
@@ -31,7 +31,8 @@
 
     <div id="main">
         <div id="title">
-            <h3>Create Post</h3>
+            <h3>Create Post</h3>   
+            <a th:href="@{/trainers/all}"><button class="post-But">Return</button></a>
         </div>
 
         <div class="postForm">
@@ -41,6 +42,10 @@
                 <textarea id="text" name="text" rows="5" cols="50" placeholder="What would you like to say?"></textarea>
 
                 <br>
+
+                <!-- hardcoded trainerId at this point since login not implemented -->
+                <input type="hidden" name="trainerId" id="trainerId" value="4">
+                <input type="hidden" name="username" id="username" value="AKing927">
 
                 <label for="fitnessLevel"><b>What level user can see this post?</b></label><br>
                 <div class="formRadio">
@@ -54,8 +59,6 @@
 
                 <br>
 
-                <!-- hardcoded trainerId at this point since login not implemented -->
-                <input type="hidden" name="trainerId" id="trainerId" value="4">
 
                 <input class="button" type="submit">
 
