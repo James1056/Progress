@@ -1,9 +1,4 @@
-package com.teamTBA.Progress.ad;
-/**
- * Last Updated: 4/6/2023
- * This class represents trainer-ad entities from the progress database
- * Authors: Dallin Pierce
- */
+package com.teamTBA.Progress.video;
 
 import com.teamTBA.Progress.user.User;
 import jakarta.persistence.Entity;
@@ -23,32 +18,36 @@ import lombok.Setter;
  */
 @AllArgsConstructor
 @Entity
-@Table(name = "ad")
+@Table(name = "video")
 @NoArgsConstructor
 @Getter
 @Setter
-public class Ad {
+public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long adId;
+    private long id;
     private long trainerId;
+    private String youtubeId;
+    private String description;
     private int fitnessLevel;
-    private String text;
-
-    public Ad( int fitnessLevel, String text, User trainer) {
+    
+    public Video(String youtubeId, String description, int fitnessLevel, User trainer){
+        this.youtubeId = youtubeId;
+        this.description = description;
         this.fitnessLevel = fitnessLevel;
-        this.text = text;
         this.trainer = trainer;
-        
     }
     
     @Transient
     private User trainer;
+    @Transient
+    private String thumbnail;
+    @Transient
+    private String title;
     
-    public Ad( int fitnessLevel, String text) {
+    public Video( String youtubeId, String description, int fitnessLevel) {
+        this.youtubeId = youtubeId;
+        this.description = description;
         this.fitnessLevel = fitnessLevel;
-        this.text = text;
-        
     }
-    
 }

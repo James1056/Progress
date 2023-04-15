@@ -1,5 +1,11 @@
 package com.teamTBA.Progress.ad;
+/**
+ * Last Updated: 4/6/2023
+ * This class interfaces with the database to retrieve and save trainer-ads
+ * Authors: Dallin Pierce
+ */
 
+import com.teamTBA.Progress.user.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +19,22 @@ public class AdService {
     
     @Autowired
     private AdRepository repo;
+    
+    @Autowired
+    private UserRepository userRepo;
 
     public List<Ad> getAllAds() {
-        return repo.findAll();
+        List<Ad> adList = repo.findAll();
+        for(Ad ad : adList){
+            ad.setTrainer(userRepo.findUserById(ad.getTrainerId()));
+        }
+        return adList;
     }
 
     public Ad getAd(long adId) {
-        return repo.getReferenceById(adId);
-    }
-
-    public void deleteAd(long adId) {
-        repo.deleteById(adId);
+        Ad ad = repo.getReferenceById(adId);
+        ad.setTrainer(userRepo.findUserById(ad.getTrainerId()));
+        return ad;
     }
 
     void saveAd(Ad ad) {

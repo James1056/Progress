@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Progress</title>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1><a href="index-trainer.html">Progress</a></h1>
+            <div id="menu">
+
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="questions.html">Questions</a>
+                        <a href="partner_requests.html">Partner Requests</a>
+                        <a href="trainers.html">Find a Trainer</a>
+                        <a href="splits.html">Splits</a>
+                        <a href="gym_info.html">Gym Info</a>
+                        <a href="meal_plan.html">Meal Plan</a>
+                        <a href="user_info.html">Profile</a>
+                    </div>
+                </div>      
+            </div>
+        </header>
+
+        <main>
+            <div class="forum-title">
+                <h2>Training Videos &nbsp;|&nbsp; <a href="#" th:text=" [ +${trainer.username}+ ] "></a>&nbsp;|&nbsp; <a href="/trainer-vids/new-vid">New Post</a></h2><hr>
+            </div>
+
+            <div class="wrapper">
+                <div class="post-container">
+                    <div class="post-card" th:each="video : ${videoList}">
+                        <div class="user">
+                            <img th:src="@{${video.thumbnail}}" alt="youtube thumbnail">
+                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}"><span></span></a>
+                        </div>
+                        <div class="content">
+                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}" th:text="${video.title}"></a></a><br><hr>
+                            <p th:text="${video.description}"></p>
+                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}"><span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    
+        <footer>
+            <p class="copyright"> Team TBA | Copyright 2023 </p>
+        </footer>
+    </div>
+    
+
+</body>
+</html>

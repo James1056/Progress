@@ -1,4 +1,9 @@
 package com.teamTBA.Progress.ad;
+/**
+ * Last Updated: 4/6/2023
+ * This class manages the mapping of database entities to different views and endpoints
+ * Authors: Dallin Pierce
+ */
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +25,7 @@ public class AdController {
     AdService adService;
     
     @GetMapping("/all")
-        public String getAds(Model model) {
+    public String getAds(Model model) {
         model.addAttribute("adList", adService.getAllAds());
         return "ad/trainers";
     }
@@ -33,7 +38,6 @@ public class AdController {
     
     @PostMapping("/create")
     public String createAd(Ad ad) {
-
         adService.saveAd(ad);
         return "redirect:/trainers/all";
     }
