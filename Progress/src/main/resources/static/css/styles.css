@@ -312,6 +312,7 @@ main{
     height: 75vh;
     font-size: 18px;
     overflow: hidden;
+    background-color: black;
     border: 4px solid #ffffff;
     border-bottom: 4px solid #a11b14;
     margin-bottom: 3vh;
