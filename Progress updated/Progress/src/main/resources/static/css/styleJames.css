@@ -25,7 +25,7 @@ body {
 }
 
 .ham-button {
-    background-image: url('/img/hamburger.png');
+    background-image: url('/images/hamburger.png');
     background-size: cover;
     background-color: #191002;
     padding: 16px;

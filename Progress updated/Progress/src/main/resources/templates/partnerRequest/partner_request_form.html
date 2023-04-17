@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Meal Post</title>
+        <title>Partner Request Post</title>
         <link rel="stylesheet" href="/css/styleJames.css"> 
     </head>
 
@@ -19,7 +19,7 @@
                         <a href="#">Find a Trainer</a>
                         <a href="#">Splits</a>
                         <a href="#">Gym Info</a>
-                        <a href="/meal/mealPLan">Meal Plan</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
                         <a href="#">Profile</a>
                     </div>
                 </div>      
@@ -28,24 +28,25 @@
 
         <div id="main">
             <div id="title">
-                <h3>Create New Meal Plan Post</h3>
+                <h3>Create New Partner Request</h3>
             </div>
 
             <div class="postForm">
-                <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>
-                <form action="http://localhost:8080/meal/createMealPost" method="post">
-                    <!-- <h4>Create New Meal Plan Post</h4> -->
+                <form action="http://localhost:8080/partner/createPartnerPost" method="post">
                     
-                    <input id="user_id" name="user_id" type="number" value=1 hidden >
+                    <input id="user_id" name="user_id" type="number" th:value="${currentUser.id}" hidden >
 
                     <br>
 
-                    <label for="text">Content for Meal Plan </label>
-                    <input id="text" type="text" name="text" placeholder="Enter Meal Plan" required/>
+                    <label for="text">Content for Partner Request</label>
+                    <input id="text" type="text" name="text" placeholder="Enter Content" required/>
 
                     <br>
 
                     <input class="button" type="submit">
+                    
+
+                    
                 </form>
         </div>
         </div>
