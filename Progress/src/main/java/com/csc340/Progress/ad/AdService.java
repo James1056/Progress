@@ -8,7 +8,7 @@ package com.csc340.Progress.ad;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.csc340.Progress.gymUser.GymUserRepository;
+import com.csc340.Progress.user.UserRepository;
 
 /**
  *
@@ -21,7 +21,7 @@ public class AdService {
     private AdRepository repo;
     
     @Autowired
-    private GymUserRepository userRepo;
+    private UserRepository userRepo;
 
     public List<Ad> getAllAds() {
         List<Ad> adList = repo.findAll();

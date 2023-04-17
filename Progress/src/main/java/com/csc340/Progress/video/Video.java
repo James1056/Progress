@@ -1,6 +1,6 @@
 package com.csc340.Progress.video;
 
-import com.csc340.Progress.gymUser.GymUser;
+import com.csc340.Progress.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,7 +31,7 @@ public class Video {
     private String description;
     private int fitnessLevel;
     
-    public Video(String youtubeId, String description, int fitnessLevel, GymUser trainer){
+    public Video(String youtubeId, String description, int fitnessLevel, User trainer){
         this.youtubeId = youtubeId;
         this.description = description;
         this.fitnessLevel = fitnessLevel;
@@ -39,7 +39,7 @@ public class Video {
     }
     
     @Transient
-    private GymUser trainer;
+    private User trainer;
     @Transient
     private String thumbnail;
     @Transient

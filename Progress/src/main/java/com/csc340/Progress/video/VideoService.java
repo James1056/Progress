@@ -3,7 +3,7 @@ package com.csc340.Progress.video;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.csc340.Progress.gymUser.GymUserRepository;
+import com.csc340.Progress.user.UserRepository;
 
 /**
  *
@@ -16,7 +16,7 @@ public class VideoService {
     private VideoRepository repo;
     
     @Autowired
-    private GymUserRepository userRepo;
+    private UserRepository userRepo;
     
     public List<Video> getVideosByTrainerId(long trainerId) {
         List<Video> videoList = repo.findVideosByTrainerId(trainerId);

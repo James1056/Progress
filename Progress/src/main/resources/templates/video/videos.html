@@ -2,6 +2,7 @@
 <html lang="en"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
 
         <main>
             <div class="forum-title">
-                <h2>Training Videos &nbsp;|&nbsp; <a href="#" th:text=" [ +${trainer.username}+ ] "></a>&nbsp;|&nbsp; <a href="/trainer-vids/new-vid">New Post</a></h2><hr>
+                <h2>Training Videos &nbsp;|&nbsp; <a href="#" th:text=" [ +${trainer.username}+ ] "></a><span sec:authorize="hasRole('TRAINER')"> &nbsp;|&nbsp;<a href="/trainer-vids/new-vid" >New Post</a></span></h2><hr>
             </div>
 
             <div class="wrapper">

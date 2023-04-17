@@ -1,6 +1,6 @@
 package com.csc340.Progress.security.config;
 
-import com.csc340.Progress.gymUser.GymUserDetailsService;
+import com.csc340.Progress.user.GymUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,13 +24,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests)->requests
+                .requestMatchers("/trainer-vids/new-vid").hasAnyRole("TRAINER")
+                .requestMatchers("/trainers/new-ad").hasAnyRole("TRAINER")
                 .anyRequest() .authenticated()
                 )
                 .formLogin((form) -> form
                 .loginPage("/login")
                 .permitAll()
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout.permitAll())
+                .csrf().disable();
         
          return http.build();
     }

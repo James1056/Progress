@@ -5,7 +5,10 @@ package com.csc340.Progress.ad;
  * Authors: Dallin Pierce
  */
 
+import com.csc340.Progress.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,9 @@ public class AdController {
     
     @Autowired
     AdService adService;
+    
+    @Autowired
+    UserService userService;
     
     @GetMapping("/all")
     public String getAds(Model model) {
@@ -43,7 +49,9 @@ public class AdController {
     }
 
     @GetMapping("/new-ad")
-    public String newAdForm(Model model) {
+    public String newAdForm(Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         return "ad/post";
     }
     

@@ -11,7 +11,7 @@
 <body>
     <div class="page-container">
         <header>
-            <h1><a href=#>Progress</a></h1>
+            <h1><a th:href="@{/dashboard}">Progress</a></h1>
             <div id="menu">
                 <div class="hamburger">
                     <button class="ham-button"></button>
@@ -30,7 +30,7 @@
 
         <main>
             <div class="forum-title">
-                <h2>Available Trainers &nbsp;|&nbsp; <a href="/trainers/new-ad">New Post</a></h2><hr>
+                <h2>Available Trainers </a><span sec:authorize="hasRole('TRAINER')"> &nbsp;|&nbsp; <a href="/trainers/new-ad">New Post</a></span></h2><hr>
                 
             </div>
 

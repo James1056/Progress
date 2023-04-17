@@ -5,7 +5,7 @@ package com.csc340.Progress.ad;
  * Authors: Dallin Pierce
  */
 
-import com.csc340.Progress.gymUser.GymUser;
+import com.csc340.Progress.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,7 +35,7 @@ public class Ad {
     private int fitnessLevel;
     private String text;
 
-    public Ad( int fitnessLevel, String text, GymUser trainer) {
+    public Ad( int fitnessLevel, String text, User trainer, long trainerId) {
         this.fitnessLevel = fitnessLevel;
         this.text = text;
         this.trainer = trainer;
@@ -43,7 +43,7 @@ public class Ad {
     }
     
     @Transient
-    private GymUser trainer;
+    private User trainer;
     
     public Ad( int fitnessLevel, String text) {
         this.fitnessLevel = fitnessLevel;

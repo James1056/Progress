@@ -3,6 +3,7 @@
     <html lang="en"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,9 @@
                     <button class="ham-button"></button>
                     <div class="drop-cont">
                         <a href="user_info.html">Profile</a>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
                     </div>
                 </div>      
             </div>
@@ -26,7 +30,7 @@
 
         <main>
             <div class="forum-title">
-                <h2>Dashboard</h2><hr>
+                <h2>Dashboard </span></h2><hr>
             </div>
 
             <div class="wrapper">
@@ -41,10 +45,20 @@
                         <div class="banner"><img th:src="@{images/partner.jpg}" alt="placeholder"></div>
                         <div class="content">Partner Requests</div>
                     </div>
-                    <div class="forum-card">
+                    <div class="forum-card" sec:authorize="hasRole('NO_TRAINER')">
                         <a href="/trainers/all"><span></span></a>
                         <div class="banner"><img th:src="@{images/personal_trainer.jpg}" alt="placeholder"></div>
                         <div class="content">Find a Trainer</div>
+                    </div>
+                    <div class="forum-card" sec:authorize="hasRole('HAS_TRAINER')">
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}"><span></span></a>
+                        <div class="banner"><img th:src="@{images/training_vid.png}" alt="placeholder"></div>
+                        <div class="content">Training Videos</div>
+                    </div>
+                    <div class="forum-card" sec:authorize="hasRole('TRAINER')">
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}"><span></span></a>
+                        <div class="banner"><img th:src="@{images/training_vid.png}" alt="placeholder"></div>
+                        <div class="content">Training Videos</div>
                     </div>
                     <div class="forum-card">
                         <a href="#"><span></span></a>

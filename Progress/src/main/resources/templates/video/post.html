@@ -48,9 +48,8 @@
 
                 <br>
 
-                <!-- hardcoded trainerId at this point since login not implemented -->
                 <input type="hidden" name="youtubeId" id="youtubeId" value ="">
-                <input type="hidden" name="trainerId" id="trainerId" value="4">
+                <input type="hidden" name="trainerId" id="trainerId" th:value="${currentUser.id}">
                 
 
                 <label for="fitnessLevel"><b>Who's This Video For?</b></label><br>

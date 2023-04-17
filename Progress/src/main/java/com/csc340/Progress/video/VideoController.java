@@ -3,9 +3,11 @@ package com.csc340.Progress.video;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.csc340.Progress.gymUser.GymUserService;
+import com.csc340.Progress.user.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,7 @@ public class VideoController {
     VideoService videoService;
     
     @Autowired
-    GymUserService userService;
+    UserService userService;
     
     private static final String KEY = "AIzaSyAXoeQ1q_b2ReCSDi8mb2EaxoIf2sRptXA";
     
@@ -73,7 +75,9 @@ public class VideoController {
     }
     
     @GetMapping("/new-vid")
-    public String newVidForm(Model model) {
+    public String newVidForm(Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         return "video/post";
     }
     
