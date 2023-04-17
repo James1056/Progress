@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Progress</title>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1><a th:href="@{/dashboard}">Progress</a></h1>
+            <div id="menu">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="#">Questions</a>
+                        <a href="#">Partner Requests</a>
+                        <a href="#">Find a Trainer</a>
+                        <a href="#">Splits</a>
+                        <a href="#">Gym Info</a>
+                        <a href="#">Meal Plan</a>
+                        <a href="#">Profile</a>
+                    </div>
+                </div>      
+            </div>
+        </header>
+
+        <main>
+            <div class="forum-title">
+                <h2>Available Trainers </a><span sec:authorize="hasRole('TRAINER')"> &nbsp;|&nbsp; <a href="/trainers/new-ad">New Post</a></span></h2><hr>
+                
+            </div>
+
+            <div class="wrapper">
+                <div class="post-container">
+                    <div class="post-card" th:each="ad : ${adList}">
+                        <div class="user">
+                            <img th:src="@{/images/user_blank.png}" alt="placeholder">
+                            <a href="#"><span></span></a>
+                        </div>
+                        <div class="content">
+                            <a href="#" th:text="${ad.trainer.username}"--></a></a><br><hr>
+                            <p th:text="${ad.text}"></p>
+                            <a th:href="@{/trainers/id={id}(id=${ad.adId})}"><span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    
+        <footer>
+            <p class="copyright"> Team TBA | Copyright 2023 </p>
+        </footer>
+    </div>
+    
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Progress</title>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1><a th:href="@{/dashboard}">Progress</a></h1>
+            <div id="menu">
+
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="#">Questions</a>
+                        <a href="#">Partner Requests</a>
+                        <a href="#">Find a Trainer</a>
+                        <a href="#">Splits</a>
+                        <a href="#">Gym Info</a>
+                        <a href="#">Meal Plan</a>
+                        <a href="#">Profile</a>
+                    </div>
+                </div>      
+            </div>
+        </header>
+
+        <main>
+            <div id="title">  
+                <a th:href="@{/trainer-vids/all/id=4}"><button class="post-But" style="position: absolute; top: 0; right: 0;">Return</button></a>
+            </div>
+            <div class="wrapper">
+                <div class="video-container">
+                    <div class="video-window">
+                        <iframe id="player" type="text/html" allowfullscreen="true" th:src="'http://www.youtube.com/embed/'+${video.youtubeId}+'?enablejsapi=1&rel=0'" frameborder="0"></iframe>
+                    </div>                    
+                    <div class="description">
+                        <span class="video-title" th:text="${video.title} + ' [ Fitness Level ]'"></span><br><hr>
+                        <p th:text="${video.description}"></p>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    
+        <footer>
+            <p class="copyright"> Team TBA | Copyright 2023 </p>
+        </footer>
+    </div>
+
+</body>
+</html>

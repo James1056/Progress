@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Partner Request Post</title>
+        <link rel="stylesheet" href="/css/styleJames.css"> 
+    </head>
+
+    <body>
+        <div id="header">
+            <a class="title" href="/dashboard"><h2>Progress</h2></a>
+
+            <div id="menu">
+
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="#">Questions</a>
+                        <a href="/partner/partnerRequests">Partner Requests</a>
+                        <a href="#">Find a Trainer</a>
+                        <a href="#">Splits</a>
+                        <a href="#">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <a href="#">Profile</a>
+                    </div>
+                </div>      
+            </div>
+        </div> 
+
+        <div id="main">
+            <div id="title">
+                <h3>Create New Partner Request</h3>
+            </div>
+
+            <div class="postForm">
+                <form action="http://localhost:8080/partner/createPartnerPost" method="post">
+                    <!-- <h4>Create New Partner Request</h4> -->
+
+                    <input id="user_id" name="user_id" type="number" value=1 hidden >
+
+                    <br>
+                    <!-- <p sec:authentication="id"></p> -->
+
+                    <label for="text">Content for Partner Request</label>
+                    <input id="text" type="text" name="text" placeholder="Enter Content" required/>
+
+                    <br>
+
+                    <input class="button" type="submit">
+                    
+
+                    
+                </form>
+        </div>
+        </div>
+    </body>
+</html>

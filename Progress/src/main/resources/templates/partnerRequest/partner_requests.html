@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Partner Requests</title>
+        <link rel="stylesheet" href="/css/styleJames.css">
+    </head>
+
+    <body>
+        <div id="header">
+            <a class="title" href="/dashboard"><h2>Progress</h2></a>
+
+            <div id="menu">
+
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="#">Questions</a>
+                        <a href="#">Partner Requests</a>
+                        <a href="#">Find a Trainer</a>
+                        <a href="#">Splits</a>
+                        <a href="#">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <a href="#">Profile</a>
+                    </div>
+                </div>      
+            </div>
+        </div> 
+
+        <div id="main">
+            <div id="title">
+                <h3>Partner Requests</h3>
+                <a href="/partner/partnerPost"><button class="post-But">New post</button></a>
+            </div>
+
+            <div class="post beginner" th:each="request : ${requests}">
+                <div>
+                    <h4 th:text="${request.user.username}"></h4>
+                    
+                </div>
+                
+                <p th:text="${request.text}" />
+                
+                <a th:href="@{/partner/message/id={id}(id=${request.id})}"><button class="button">Message</button></a>
+                 
+            </div>
+
+            <!-- <div class="post beginner" th:each="user : ${users}">
+                <div>
+                    <h4 th:text="${user.first_name}"></h4>
+                    <h5 th:text="${user.fitness_level}"></h5>
+                    
+                </div> -->
+
+                <!-- <div th:each="request : ${users.requests}"> -->
+                    <!-- <p th:text="${request.text}" />
+                    
+                    <a th:href="@{/progress/message/id={id}(id=${user.requests.id})}"><button class="button">Message</button></a> -->
+                <!-- </div> -->
+                
+                
+                 
+            <!-- </div> -->
+
+            <!-- <#list users as user>
+            <div class="post beginner" th:each="partner : ${requests}">
+                
+                <div>
+                    <h4 th:text="${user.first_name}"></h4>
+                    <h5 th:text="${partner.fitness_level}"></h5>
+                    
+                </div>
+                
+                <#list user.requests as request>
+                <p th:text="${request.text}" />
+                
+                <a th:href="@{/progress/message/id={id}(id=${request.id})}"><button class="button">Message</button></a>
+                </#list>
+            </div>
+            </#list> -->
+
+        </div>
+
+        
+    </body>
+</html>
