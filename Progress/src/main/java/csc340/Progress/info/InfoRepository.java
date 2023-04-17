@@ -1,5 +1,6 @@
 package csc340.Progress.info;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface InfoRepository extends JpaRepository<Info, Long> {
 
+    List<Info> findByIdIn(List<Long> infoIds);
 }

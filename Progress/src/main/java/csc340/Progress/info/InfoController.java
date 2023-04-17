@@ -1,6 +1,8 @@
 package csc340.Progress.info;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author tdlga
  */
-
 @Controller
 @RequestMapping("/info")
 public class InfoController {
@@ -23,7 +24,9 @@ public class InfoController {
 
     @GetMapping("/all")
     public String getInfos(Model model) {
-        model.addAttribute("infoList", infoService.getAllInfo());
+        List<Info> infoList = infoService.getAllInfo();
+        Collections.reverse(infoList);
+        model.addAttribute("infoList", infoList);
         return "info/list-infos";
     }
 
@@ -37,6 +40,12 @@ public class InfoController {
     public String deleteInfo(@PathVariable long infoID, Model model) {
         infoService.deleteInfo(infoID);
         return "redirect:/info/all";
+    }
+
+    @GetMapping("/gym")
+    public String getGymInfo(Model model) {
+        model.addAttribute("infoList", infoService.getGymInfo());
+        return "info/gym-info";
     }
 
     @PostMapping("/create")

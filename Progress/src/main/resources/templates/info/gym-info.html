@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:util="urn:util">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Gym Information</title>
+        <link th:href="@{/styles/style.css}" rel="stylesheet" />
+        <style>
+            .info-container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .info-container h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .info-container p {
+                margin-bottom: 10px;
+            }
+
+            .button-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .button-container a {
+                display: inline-block;
+                margin-right: 10px;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="header">
+            <h2>Progress</h2>
+            <div class="hamburger">
+                <button class="ham-button"></button>
+                <div class="drop-cont">
+                    <a href="all">Announcements</a>
+                </div>
+            </div>
+        </div>
+        <div class="info-container">
+            <h1>Gym Information</h1>
+            <div th:each="info : ${infoList}" th:if="${info.id == 1 or info.id == 2}">
+                <h2 th:text="${info.title}"></h2>
+                <p th:text="${info.description}"></p>
+                <img th:src="${info.image}" />
+                <p th:text="${info.date}"></p>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a th:href="@{/info/id={id}(id=1)}">Edit Gym Message</a>
+            <a th:href="@{/info/id={id}(id=2)}">Edit Gym Facility</a>
+        </div>
+    </body>
+</html>

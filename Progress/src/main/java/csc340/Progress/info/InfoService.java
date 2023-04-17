@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
  *
  * @author tdlga
  */
-
 @Service
 public class InfoService {
 
@@ -30,5 +29,10 @@ public class InfoService {
     void saveInfo(Info info) {
 
         repo.save(info);
+    }
+
+    public List<Info> getGymInfo() {
+        List<Info> gymInfos = repo.findByIdIn(List.of(1L, 2L));
+        return gymInfos;
     }
 }
