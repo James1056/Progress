@@ -19,15 +19,15 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long user_id;
+    private long userId;
     private String text;
     @Transient
     private User user;
 
 
 
-    public Question(String text, long user_id) {
+    public Question(String text, long userId) {
         this.text = text;
-        this.user_id = user_id;
+        this.userId = userId;
     }
 }

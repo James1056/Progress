@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
         <meta charset="UTF-8">
         <title>Info Detail</title>
-        <link th:href="@{/styles/style.css}" rel="stylesheet"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link th:href="@{/css/style.css}" rel="stylesheet"/>
         <style>
+            body {
+                background-color: #808080;
+                display: flex;
+                flex-direction: column;
+                margin: 0px;
+                font-family: sans-serif;
+            }
             .card-container {
                 background-color: #f8f9fa;
                 margin: 20px;
@@ -14,11 +25,24 @@
     </head>
     <body>
         <div id="header">
-            <h2>Progress</h2>
-            <div class="hamburger">
-                <button class="ham-button"></button>
-                <div class="drop-cont">
-                    <a href="partner_requests.html">Partner Requests</a>
+            <h2><a th:href="@{/dashboard}" style="text-decoration: none; color:#fff;">Progress</a></h2>
+            <div id="menu">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="/questions/all">Questions</a>
+                        <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                        <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                        <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
+                        <a href="/splits/all">Splits</a>
+                        <a href="/info/all">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,7 +51,7 @@
                 <div class="card-body">
                     <h2 class="card-title"><span th:text="${info.title}"></span></h2>
                     <p class="card-text"><span th:text="${info.description}"></span></p>
-                    <img class="card-img-top" th:src="@{${info.image}}" alt="Info Image" style="max-width: 300px;">
+                    <img th:src="@{${info.image}}" alt="Info Image" width="original_width" height="original_height">
                 </div>
             </div>
         </div>

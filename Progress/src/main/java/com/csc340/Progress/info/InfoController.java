@@ -1,9 +1,12 @@
 package com.csc340.Progress.info;
 
+import com.csc340.Progress.user.UserService;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +24,15 @@ public class InfoController {
 
     @Autowired
     InfoService infoService;
+    
+    @Autowired
+    UserService userService;
 
     @GetMapping("/all")
-    public String getInfos(Model model) {
+    public String getInfos( Authentication auth, Model model) {
+        
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         List<Info> infoList = infoService.getAllInfo();
         Collections.reverse(infoList);
         model.addAttribute("infoList", infoList);
@@ -31,7 +40,9 @@ public class InfoController {
     }
 
     @GetMapping("/id={infoID}")
-    public String getInfo(@PathVariable long infoID, Model model) {
+    public String getInfo(@PathVariable long infoID, Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("info", infoService.getInfo(infoID));
         return "info/info-detail";
     }
@@ -43,7 +54,9 @@ public class InfoController {
     }
 
     @GetMapping("/gym")
-    public String getGymInfo(Model model) {
+    public String getGymInfo(Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("infoList", infoService.getGymInfo());
         return "info/gym-info";
     }
@@ -63,12 +76,16 @@ public class InfoController {
     }
 
     @GetMapping("/new-info")
-    public String newInfoForm(Model model) {
+    public String newInfoForm(Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         return "info/new-info";
     }
 
     @GetMapping("/update/id={infoID}")
-    public String updateInfoForm(@PathVariable long infoID, Model model) {
+    public String updateInfoForm(@PathVariable long infoID, Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("info", infoService.getInfo(infoID));
         return "info/update-info";
     }

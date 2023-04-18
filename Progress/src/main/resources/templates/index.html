@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-    <html lang="en"
+<html lang="en"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
     xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
@@ -13,13 +12,12 @@
 <body>
     <div class="page-container">
         <header>
-            <h1><a href="index.html">Progress</a></h1>
+            <h1><a th:href="@{/dashboard}">Progress</a></h1>
             <div id="menu">
 
                 <div class="hamburger">
                     <button class="ham-button"></button>
                     <div class="drop-cont">
-                        <a href="user_info.html">Profile</a>
                         <form th:action="@{/logout}" method="post">
                             <input type="submit" value="Sign Out"/>
                         </form>
@@ -50,7 +48,7 @@
                         <div class="banner"><img th:src="@{images/personal_trainer.jpg}" alt="placeholder"></div>
                         <div class="content">Find a Trainer</div>
                     </div>
-                    <div class="forum-card" sec:authorize="hasRole('TRAINER')">
+                    <div class="forum-card" sec:authorize="hasAnyRole('TRAINER', 'OWNER')">
                         <a href="/trainers/all"><span></span></a>
                         <div class="banner"><img th:src="@{images/personal_trainer.jpg}" alt="placeholder"></div>
                         <div class="content">Trainer Ads</div>

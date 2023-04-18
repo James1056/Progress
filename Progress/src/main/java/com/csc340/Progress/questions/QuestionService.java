@@ -17,14 +17,14 @@ public class QuestionService {
     public List<Question> getAllQuestions() {
         List<Question> questionList = repo.findAll();
             for (Question question: questionList) {
-                question.setUser(userRepo.findUserById(question.getUser_id()));
+                question.setUser(userRepo.findUserById(question.getUserId()));
             }
             return questionList;
     }
 
     public Question getQuestion(Long opId) {
         Question question = repo.getReferenceById(opId);
-        question.setUser(userRepo.findUserById(question.getUser_id()));
+        question.setUser(userRepo.findUserById(question.getUserId()));
         return question;
     }
 

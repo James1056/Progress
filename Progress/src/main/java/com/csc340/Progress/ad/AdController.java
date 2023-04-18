@@ -39,7 +39,9 @@ public class AdController {
     }
 
     @GetMapping("/id={adId}")
-    public String getAd(@PathVariable long adId, Model model) {
+    public String getAd(@PathVariable long adId, Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("ad", adService.getAd(adId));
         return "ad/view_ad";
     }

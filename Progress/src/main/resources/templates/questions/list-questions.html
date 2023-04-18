@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta name ="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
@@ -12,20 +13,25 @@
 <body>
     <div class="page-container">
         <header>
-        <h1>Progress</h1>
+        <h1><a th:href="@{/dashboard}">Progress</a></h1>
         <div id="menu">
             <div class="hamburger">
                 <button class="ham-button"></button>
                 <div class="drop-cont">
                     <a href="/questions/all">Questions</a>
-                    <a href="#">Partner Requests</a>
-                    <a href="#">Find a Trainer</a>
+                    <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                    <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                    <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                    <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                    <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
                     <a href="/splits/all">Splits</a>
-                    <a href="#">Gym Info</a>
-                    <a href="#">Meal Plan</a>
-                    <a href="#">Profile</a>
+                    <a href="/info/all">Gym Info</a>
+                    <a href="/meal/mealPlan">Meal Plan</a>
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out"/>
+                    </form>
                 </div>
-            </div>      
+            </div>
         </div>
         </header>
 
@@ -36,9 +42,10 @@
 
             <div class="post" th:each="question : ${questionList}">
                 <div>
-                    <h4 href="#" th:text="${question.user.username}"></h4><br><hr>
+                    <h4 href="#" th:text="${question.user.username}" style="margin-bottom: 3px;"></h4>
                 </div>
-                    <a th:href="@{/questions/id={id}(id=${question.id})}" th:text=" ${question.text}"> </a>
+                <hr>
+                    <a th:href="@{/questions/id={id}(id=${question.id})}" th:text=" ${question.text}" style="text-decoration: none; color: black;"> </a>
 
                 </div>
 

@@ -28,7 +28,9 @@ public class PartnerController {
     UserService userService;
 
     @GetMapping("partnerRequests")
-    public String getQuestions(Model model) {
+    public String getQuestions(Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("requests", partnerService.getAllRequests());
         return "partnerRequest/partner_requests";
     }
@@ -56,7 +58,7 @@ public class PartnerController {
     }
 
     @PostMapping("/createNewMessage") 
-        public String createMessage(Authentication auth, Message message) {
+        public String createMessage(Message message) {
             partnerService.saveMessage(message);
             return "redirect:/partner/partnerRequests";
         }

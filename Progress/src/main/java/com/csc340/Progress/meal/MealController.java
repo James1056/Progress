@@ -22,7 +22,9 @@ public class MealController {
     UserService userService;
 
     @GetMapping("/mealPlan")
-    public String getMealPlans(Model model) {
+    public String getMealPlans(Authentication auth, Model model) {
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("meals", mealService.getAllMealPlans());
         return "meal/meal_plan.html";
     }

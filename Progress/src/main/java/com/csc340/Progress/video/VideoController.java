@@ -54,7 +54,7 @@ public class VideoController {
     }
     
     @GetMapping("/vid={id}")
-    public String getVideo(@PathVariable long id, Model model) throws JsonProcessingException {
+    public String getVideo(@PathVariable long id, Authentication auth, Model model) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper mapper = new ObjectMapper();
         Video video = videoService.getVideo(id);
@@ -66,6 +66,8 @@ public class VideoController {
         JsonNode root = mapper.readTree(jSonVideo);
         
         video.setTitle( root.at("/items/0/snippet/title").asText());
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("video", video);
         return "video/view_video";
     }
