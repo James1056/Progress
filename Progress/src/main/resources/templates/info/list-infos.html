@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:util="urn:util">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gym Announcements</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <style>
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        table td,
+        table th {
+            border: none;
+            padding: 10px;
+        }
+
+        table tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:last-child {
+            border-bottom: none;
+        }
+
+        .button-24 {
+            display: block;
+            margin: 0 auto;
+        }
+
+        th:first-child,
+        td:first-child {
+            width: 10%;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 25%;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 20%;
+            max-width: 350px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th:last-child,
+        td:last-child {
+            width: 15%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h2>Progress</h2>
+        <div class="hamburger">
+            <button class="ham-button"></button>
+            <div class="drop-cont">
+                <a href="gym">About Our Gym</a>
+            </div>
+        </div>
+    </div>
+    <h1>Gym Announcements</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Date Posted</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="info : ${infoList}">
+                <td th:text="${info.id}"></td>
+                <td th:text="${info.title}"></td>
+                <td th:text="${#strings.length(info.description) > 250 ? #strings.substring(info.description, 0, 250) + '...' : info.description}"></td>
+                <td><img th:src="${info.image}" /></td>
+                <td th:text="${info.date}"></td>
+                <td><a th:href="@{/info/id={id}(id=${info.id})}" class="button-24">View Details</a></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <a href="/info/new-info" class="button-24">Add New Announcement</a>
+</body>
+
+</html>

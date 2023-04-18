@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/stylecheck.css}">
+
+    <title>Progress</title>
+</head>
+<body>
+<div class="page-container">
+    <header>
+        <h1><a href=#>Progress</a></h1>
+        <div id="menu">
+            <div class="hamburger">
+                <button class="ham-button"></button>
+                <div class="drop-cont">
+                    <a href="/questions/all">Questions</a>
+                    <a href="partner_requests.html">Partner Requests</a>
+                    <a href="trainers.html">Find a Trainer</a>
+                    <a href="/splits/all">Splits</a>
+                    <a href="gym_info.html">Gym Info</a>
+                    <a href="meal_plan.html">Meal Plan</a>
+                    <a href="user_info.html">Profile</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id = "main">
+        <div class="forum-title">
+            <h2>Workout Splits &nbsp;|&nbsp; <a href="/splits/new-split" class="button">Post split</a></h2><hr>
+        </div>
+
+                <div class="post" th:each="split : ${splitList}">
+                    <div>
+                        <h4 href="#" th:text="${split.user.username}"></h4><br>
+                    </div>
+                        <a th:href="@{/splits/id={id}(id=${split.id})}" th:text="${split.title}"></a><hr>
+                        <p th:text="${split.text}"></p>
+                </div>
+
+    </div>
+
+
+
+
+    <footer>
+        <p class="copyright"> Team TBA | Copyright 2023 </p>
+    </footer>
+
+</div>
+
+</body>
+</html>
