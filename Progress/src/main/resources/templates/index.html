@@ -40,8 +40,8 @@
                         <div class="banner"><img th:src="@{images/questions.jpg}" alt="placeholder"></div>
                         <div class="content">Questions</div>
                     </div>
-                    <div class="forum-card">
-                        <a href="#"><span></span></a>
+                    <div class="forum-card" th:unless="${currentUser.fitnessLevel ==  4}">
+                        <a href="/partner/partnerRequests"><span></span></a>
                         <div class="banner"><img th:src="@{images/partner.jpg}" alt="placeholder"></div>
                         <div class="content">Partner Requests</div>
                     </div>
@@ -49,6 +49,11 @@
                         <a href="/trainers/all"><span></span></a>
                         <div class="banner"><img th:src="@{images/personal_trainer.jpg}" alt="placeholder"></div>
                         <div class="content">Find a Trainer</div>
+                    </div>
+                    <div class="forum-card" sec:authorize="hasRole('TRAINER')">
+                        <a href="/trainers/all"><span></span></a>
+                        <div class="banner"><img th:src="@{images/personal_trainer.jpg}" alt="placeholder"></div>
+                        <div class="content">Trainer Ads</div>
                     </div>
                     <div class="forum-card" sec:authorize="hasRole('HAS_TRAINER')">
                         <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}"><span></span></a>

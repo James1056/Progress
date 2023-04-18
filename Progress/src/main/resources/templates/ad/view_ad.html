@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
@@ -39,7 +40,7 @@
                 <div class="row" th:text="${ad.text}" style="background-color: white; font-size: 14pt; padding: 10px; border-bottom:3px solid #a11b14;"></div>
             </div><br>
             
-            <div class="post" style="padding: 20px;">
+            <div class="post" style="padding: 20px;" sec:authorize="hasAnyRole('BEGINNER', 'INTERMEDIATE', 'ADVANCED')">
                 <form action="/trainers/all">
         
                     <div class="row">
