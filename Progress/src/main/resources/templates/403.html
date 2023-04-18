@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Progress</title>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1><a th:href="@{/dashboard}" sec:authorize="isAuthenticated()">Progress</a></h1>
+            <h1><a th:href="@{/dashboard}" sec:authorize="!isAuthenticated()">Progress</a></h1>
+            <div id="menu" sec:authorize="isAuthenticated()">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div style ="color: white; padding: 20px;">
+                <h1>Sorry, You don't have sufficient permission to visit this page.</h1>
+            
+            </div>            
+        </main>
+    </div>
+
+</body>
+</html>

@@ -26,6 +26,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests)->requests
                 .requestMatchers("/trainer-vids/new-vid").hasAnyRole("TRAINER")
                 .requestMatchers("/trainers/new-ad").hasAnyRole("TRAINER")
+                .requestMatchers("/splits/new-split").hasAnyRole("INTERMEDIATE","ADVANCED","TRAINER")
+                .requestMatchers("/meal/mealPost").hasAnyRole("ADVANCED","TRAINER")
+                .requestMatchers("/info/new-info").hasAnyRole("OWNER")
+                .requestMatchers("/info/update/*").hasAnyRole("OWNER")
                 .anyRequest() .authenticated()
                 )
                 .formLogin((form) -> form

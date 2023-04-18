@@ -29,4 +29,9 @@ public class ProgressController {
     public String login() {
         return "login";
     }
+    
+    @GetMapping("/403")
+    public String _403() {
+        return "403";
+    }
 }

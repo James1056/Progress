@@ -39,14 +39,13 @@
 
     <div id = "main">
         <div class="forum-title">
-            <h2>Workout Splits &nbsp;|&nbsp; <a href="/splits/new-split" class="button">Post split</a></h2><hr>
+            <h2>Workout Splits <a href="/splits/new-split" class="button" sec:authorize="hasAnyRole('INTERMEDIATE','ADVANCED')">Post split</a></h2><hr>
         </div>
 
                 <div class="post" th:each="split : ${splitList}">
                     <div>
-                        <h4 href="#" th:text="${split.user.username}"></h4><br>
-                    </div>
-                        <a th:href="@{/splits/id={id}(id=${split.id})}" th:text="${split.title}"></a><hr>
+                        <h4 th:text="${split.user.username} +': '+ ${split.title}" style="color:#a11b15; margin-bottom: 3px;"></h4><br>
+                    </div><hr>
                         <p th:text="${split.text}"></p>
                 </div>
 

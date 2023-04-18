@@ -59,7 +59,7 @@
                                 <p th:text= "${reply.text}" />
                     </div>
 
-            <div class="post">
+            <div class="post" th:unless="${currentUser.fitnessLevel == 1}">
                 <form action="/replies/createReply" method="post">
 
                     <div class="form-group">
