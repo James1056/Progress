@@ -44,7 +44,7 @@
                 <br>
 
                 <!-- hardcoded trainerId at this point since login not implemented -->
-                <input type="hidden" name="trainerId" id="trainerId" value="4">
+                <input type="hidden" name="trainerId" id="trainerId" th:value="${currentUser.id}">
 
                 <label for="fitnessLevel"><b>What level user can see this post?</b></label><br>
                 <div class="formRadio">

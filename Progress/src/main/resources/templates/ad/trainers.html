@@ -36,13 +36,18 @@
 
             <div class="wrapper">
                 <div class="post-container">
-                    <div class="post-card" th:each="ad : ${adList}">
-                        <div class="user">
+                    <div class="post-card" th:each="ad : ${adList}" th:if="${currentUser.fitnessLevel == ad.fitnessLevel || currentUser.fitnessLevel ge 4}">
+                        <!-- <div class="user">
                             <img th:src="@{/images/user_blank.png}" alt="placeholder">
                             <a href="#"><span></span></a>
-                        </div>
-                        <div class="content">
-                            <a href="#" th:text="${ad.trainer.username}"--></a></a><br><hr>
+                        </div> -->
+                        <div class="content" style="width: 100%; margin-left: 0;">
+                            <a href="#" th:text="${ad.trainer.username}"--></a></a>
+                            <span th:if="${ad.fitnessLevel == 1}">&nbsp;|&nbsp; Beginner</span>
+                            <span th:if="${ad.fitnessLevel == 2}">&nbsp;|&nbsp; Intermediate</span>
+                            <span th:if="${ad.fitnessLevel == 3}">&nbsp;|&nbsp; Advanced</span>
+                            
+                            <br><hr>
                             <p th:text="${ad.text}"></p>
                             <a th:href="@{/trainers/id={id}(id=${ad.adId})}"><span></span></a>
                         </div>

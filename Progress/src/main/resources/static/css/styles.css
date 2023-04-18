@@ -140,7 +140,7 @@ main{
     text-decoration: none;
 }
 
-.forum-title > h2 > span > a:hover{
+.forum-title > h2 > span >a:hover{
     text-decoration: underline;
 }
 
@@ -243,6 +243,12 @@ main{
 }
 
 .post-card > .content > a{
+    text-decoration: none;
+    color: #a11b14;
+    font-size: 20px;
+}
+
+.post-card > .content > span{
     text-decoration: none;
     color: #a11b14;
     font-size: 20px;

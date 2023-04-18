@@ -32,18 +32,21 @@
 
         <main>
             <div class="forum-title">
-                <h2>Training Videos &nbsp;|&nbsp; <a href="#" th:text=" [ +${trainer.username}+ ] "></a><span sec:authorize="hasRole('TRAINER')"> &nbsp;|&nbsp;<a href="/trainer-vids/new-vid" >New Post</a></span></h2><hr>
+                <h2>Training Videos &nbsp;|&nbsp; <a href="#" th:text=" [ +${trainer.username}+ ] "></a><span sec:authorize="hasRole('TRAINER')" th:if="${currentUser.id == trainer.id}"> &nbsp;|&nbsp;<a href="/trainer-vids/new-vid" >New Post</a></span></h2><hr>
             </div>
 
             <div class="wrapper">
                 <div class="post-container">
-                    <div class="post-card" th:each="video : ${videoList}">
+                    <div class="post-card" th:each="video : ${videoList}" th:if="${currentUser.fitnessLevel ge video.fitnessLevel}">
                         <div class="user">
                             <img th:src="@{${video.thumbnail}}" alt="youtube thumbnail">
                             <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}"><span></span></a>
                         </div>
                         <div class="content">
-                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}" th:text="${video.title}"></a></a><br><hr>
+                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}" th:text="${video.title}"></a></a>
+                            <span th:if="${video.fitnessLevel == 1}">&nbsp;|&nbsp; Beginner</span>
+                            <span th:if="${video.fitnessLevel == 2}">&nbsp;|&nbsp; Intermediate</span>
+                            <span th:if="${video.fitnessLevel == 3}">&nbsp;|&nbsp; Advanced</span><br><hr>
                             <p th:text="${video.description}"></p>
                             <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}"><span></span></a>
                         </div>

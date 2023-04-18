@@ -33,9 +33,10 @@ public class VideoController {
     private static final String KEY = "AIzaSyAXoeQ1q_b2ReCSDi8mb2EaxoIf2sRptXA";
     
     @GetMapping("/all/id={trainerId}")
-    public String getVideos(@PathVariable long trainerId, Model model) throws JsonProcessingException {
+    public String getVideos(@PathVariable long trainerId, Authentication auth, Model model) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper mapper = new ObjectMapper();
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
         List<Video> videoList = videoService.getVideosByTrainerId(trainerId);
         for(Video video : videoList){
             String url = "https://youtube.googleapis.com/youtube/v3/videos?key=" + KEY 
@@ -46,6 +47,7 @@ public class VideoController {
             video.setTitle( root.at("/items/0/snippet/title").asText());
             video.setThumbnail(root.at("/items/0/snippet/thumbnails/high/url").asText());
         }
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("videoList", videoList);
         model.addAttribute("trainer", userService.getUserById(trainerId));
         return "video/videos";

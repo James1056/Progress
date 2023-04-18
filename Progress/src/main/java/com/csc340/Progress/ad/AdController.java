@@ -31,7 +31,9 @@ public class AdController {
     UserService userService;
     
     @GetMapping("/all")
-    public String getAds(Model model) {
+    public String getAds(Authentication auth, Model model) {  
+        UserDetails userPrincipal = (UserDetails)auth.getPrincipal();
+        model.addAttribute("currentUser", userService.getUserByUsername(userPrincipal.getUsername()));
         model.addAttribute("adList", adService.getAllAds());
         return "ad/trainers";
     }

@@ -40,7 +40,10 @@
                         <iframe id="player" type="text/html" allowfullscreen="true" th:src="'http://www.youtube.com/embed/'+${video.youtubeId}+'?enablejsapi=1&rel=0'" frameborder="0"></iframe>
                     </div>                    
                     <div class="description">
-                        <span class="video-title" th:text="${video.title} + ' [ Fitness Level ]'"></span><br><hr>
+                        <span class="video-title" th:text="${video.title}"></span>
+                        <span class="video-title" th:if="${video.fitnessLevel == 1}">&nbsp;|&nbsp; Beginner</span>
+                        <span class="video-title" th:if="${video.fitnessLevel == 2}">&nbsp;|&nbsp; Intermediate</span>
+                        <span class="video-title" th:if="${video.fitnessLevel == 3}">&nbsp;|&nbsp; Advanced</span><br><hr>
                         <p th:text="${video.description}"></p>
                     </div>
                 </div>
