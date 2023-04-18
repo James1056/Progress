@@ -6,6 +6,13 @@
         <link th:href="@{/styles/style.css}" rel="stylesheet"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <style>
+            body {
+                background-color: #808080;
+                display: flex;
+                flex-direction: column;
+                margin: 0px;
+                font-family: sans-serif;
+            }
             .card-container {
                 background-color: #f8f9fa;
                 margin: 20px;
@@ -27,7 +34,7 @@
                 <div class="card-body">
                     <h2 class="card-title"><span th:text="${info.title}"></span></h2>
                     <p class="card-text"><span th:text="${info.description}"></span></p>
-                    <img class="card-img-top" th:src="@{${info.image}}" alt="Info Image" style="max-width: 300px;">
+                    <img th:src="@{${info.image}}" alt="Info Image" width="original_width" height="original_height">
                 </div>
             </div>
         </div>
