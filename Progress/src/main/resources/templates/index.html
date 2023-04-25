@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Progress</title>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1><a th:href="@{/dashboard}">Progress</a></h1>
+            <div id="menu">
+
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </div>
+                </div>      
+            </div>
+        </header>
+
+        <main>
+            <div class="forum-title">
+                <h2>Dashboard </span></h2><hr>
+            </div>
+
+            <div class="wrapper">
+                <div class="forum-card-container">
+                    <div class="forum-card">
+                        <a href="/questions/all"><span></span></a>
+                        <div class="banner"><img th:src="@{images/questions.jpg}" alt="placeholder"></div>
+                        <div class="content">Questions</div>
+                    </div>
+                    <div class="forum-card" th:unless="${currentUser.fitnessLevel ==  4}">
+                        <a href="/partner/partnerRequests"><span></span></a>
+                        <div class="banner"><img th:src="@{images/partner.jpg}" alt="placeholder"></div>
+                        <div class="content">Partner Requests</div>
+                    </div>
+                    <div class="forum-card" sec:authorize="hasRole('NO_TRAINER')">
+                        <a href="/trainers/all"><span></span></a>
+                        <div class="banner"><img th:src="@{images/personal_trainer.jpg}" alt="placeholder"></div>
+                        <div class="content">Find a Trainer</div>
+                    </div>
+                    <div class="forum-card" sec:authorize="hasAnyRole('TRAINER', 'OWNER')">
+                        <a href="/trainers/all"><span></span></a>
+                        <div class="banner"><img th:src="@{images/personal_trainer.jpg}" alt="placeholder"></div>
+                        <div class="content">Trainer Ads</div>
+                    </div>
+                    <div class="forum-card" sec:authorize="hasRole('HAS_TRAINER')">
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}"><span></span></a>
+                        <div class="banner"><img th:src="@{images/training_vid.png}" alt="placeholder"></div>
+                        <div class="content">Training Videos</div>
+                    </div>
+                    <div class="forum-card" sec:authorize="hasRole('TRAINER')">
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}"><span></span></a>
+                        <div class="banner"><img th:src="@{images/training_vid.png}" alt="placeholder"></div>
+                        <div class="content">Training Videos</div>
+                    </div>
+                    <div class="forum-card">
+                        <a href="/splits/all"><span></span></a>
+                        <div class="banner"><img th:src="@{images/splits.jpg}" alt="placeholder"></div>
+                        <div class="content">Splits</div>
+                    </div>
+                    <div class="forum-card">
+                        <a href="/info/all"><span></span></a>
+                        <div class="banner"><img th:src="@{images/news.jpg}" alt="placeholder"></div>
+                        <div class="content">Gym Info</div>
+                    </div>
+                    <div class="forum-card">
+                        <a href="/meal/mealPlan"><span></span></a>
+                        <div class="banner"><img th:src="@{images/meal_prep.png}" alt="placeholder"></div>
+                        <div class="content">Meal Plan</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <footer>
+            <p class="copyright"> Team TBA | Copyright 2023 </p>
+        </footer>
+    </div>
+    
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Progress</title>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1><a th:href="@{/dashboard}">Progress</a></h1>
+            <div id="menu">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="/questions/all">Questions</a>
+                        <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                        <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                        <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
+                        <a href="/splits/all">Splits</a>
+                        <a href="/info/all">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="forum-title">
+                <h2>Training Videos &nbsp;|&nbsp; <a href="#" th:text=" [ +${trainer.username}+ ] "></a><span sec:authorize="hasRole('TRAINER')" th:if="${currentUser.id == trainer.id}"> &nbsp;|&nbsp;<a href="/trainer-vids/new-vid" >New Post</a></span></h2><hr>
+            </div>
+
+            <div class="wrapper">
+                <div class="post-container">
+                    <div class="post-card" th:each="video : ${videoList}" th:if="${currentUser.fitnessLevel ge video.fitnessLevel}">
+                        <div class="user">
+                            <img th:src="@{${video.thumbnail}}" alt="youtube thumbnail">
+                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}"><span></span></a>
+                        </div>
+                        <div class="content">
+                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}" th:text="${video.title}"></a></a>
+                            <span th:if="${video.fitnessLevel == 1}">&nbsp;|&nbsp; Beginner</span>
+                            <span th:if="${video.fitnessLevel == 2}">&nbsp;|&nbsp; Intermediate</span>
+                            <span th:if="${video.fitnessLevel == 3}">&nbsp;|&nbsp; Advanced</span><br><hr>
+                            <p th:text="${video.description}"></p>
+                            <a th:href="@{/trainer-vids/vid={id}(id=${video.id})}"><span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    
+        <footer>
+            <p class="copyright"> Team TBA | Copyright 2023 </p>
+        </footer>
+    </div>
+    
+
+</body>
+</html>

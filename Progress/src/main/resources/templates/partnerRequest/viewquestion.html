@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+        <title>Question</title>
+        <link rel="stylesheet" href="/css/styleJames.css">
+    </head>
+
+    <body>
+        <div id="header">
+            <h2><a class="title" href="/dashboard">Progress</a></h2>
+
+            <div id="menu">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="/questions/all">Questions</a>
+                        <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                        <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                        <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
+                        <a href="/splits/all">Splits</a>
+                        <a href="/info/all">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div id="main">
+            <div id="title">
+                <h3>Message</h3>   
+            </div>
+
+            <div class="post beginner">
+                <div>
+                    <h4 th:text="${request.user.username}"></h4>
+                    <h5 th:text="${request.user.fitnessLevel}"></h5>
+                </div>
+                
+                <p th:text="${request.text}"></p>
+               
+            </div> 
+            
+            <div id="title">
+                <h3>Replies:</h3>
+            </div>
+
+            <!-- messages displayed here for the request-->
+            <div class="post" th:each="message : ${messages}"> 
+                <div>
+                    <h4 th:text="${message.user.username}"></h4>
+                </div>
+                 
+                <p th:text="${message.text}"></p>
+               
+            </div>
+
+            <div> <!-- form for new message to be added -->
+                
+                <form action="/partner/createNewMessage" method="post" class="container">
+                    <input id="response_user_id" name="response_user_id" type="number" th:value="${currentUser.id}" hidden >
+                    <input id="requestid" name="requestid" type="number" th:value="${request.id}" hidden >
+                    <input type="text" class="newMessage" id="text" name="text" placeholder="Enter your message here...">
+                    <br>
+                    <input type="submit" class="post-but">
+                </form>
+            </div>
+
+        </div>
+
+    </body>
+</html>

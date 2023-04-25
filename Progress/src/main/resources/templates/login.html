@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <title>Progress</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
+</head>
+<body>
+  <style>
+
+    body {
+      background-color: #a1a1a1;
+      margin: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #191002;
+    }
+    
+    .topnav a {
+      float: left;
+      color: whitesmoke;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 24px;
+    }
+
+
+ 
+    .login {
+      margin: auto;
+      position: absolute;
+      right: 15%;
+      top: 20%;
+      width: 25%;
+      background-color: #D9D9D9;
+      padding: 50px;
+      font-size: 1.5em;
+      border-radius: 10px;
+      border: 2px solid #000000;
+  
+      color: #333;
+    }
+
+    .bigSub {
+      font-size:xx-large;
+    }
+
+    input{
+      height: 30px;
+      border-radius: 10px;
+      padding: 5px;
+      font-size: 16px;
+    }
+    
+    </style>
+    </head>
+    <body>
+    
+    <div class="topnav">
+      <a class="active" href="#progress">Progress</a>
+    </div>
+
+    
+      <div class="login">
+        <div align="center">
+          <div style="padding-right:16px">
+
+      <h2 style="margin-bottom: 15px; margin-top: 15px; font-size:1.8em;">LOGIN</h2>
+      <form th:action="@{/login}" method="post"><hr>
+        <label for="user">Username: <input type="text" id="username" name="username"></label><br>
+        <br>
+        <label for="password">Password: <input type="password" id="password" name="password"></label><br>
+        <br>
+        <div th:if="${param.error}" style="color: #a11b14; font-size: 13pt;">
+          Invalid username and/or password.
+        </div>
+        <div th:if="${param.logout}"style="color: #a11b14; font-size: 13pt;">
+          You have been logged out.
+        </div><hr>
+        
+        <button type="Submit"style="height:50px; width:100px; font-size: 18px;">Login</button>
+        
+        
+    
+      </form>
+    </div>
+    
+    
+</body>
+
+
+
+
+</html>

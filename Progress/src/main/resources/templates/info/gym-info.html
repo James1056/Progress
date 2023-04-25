@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gym Information</title>
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
+        <style>
+            body {
+                background-color: #a1a1a1;
+                display: flex;
+                flex-direction: column;
+                margin: 0px;
+                font-family: sans-serif;
+            }
+            .info-container {
+                max-width: 1900px;
+                margin: 0 auto;
+                padding: 20px;
+                margin-left: 20px;
+                margin-right: 20px;
+                background-color: #fff;
+                border-radius: 4px;
+            }
+
+            .info-container h1 {
+                font-size: 32px;
+                text-align: center;
+                margin-top: 40px;
+            }
+
+            .info-container h2 {
+                font-size: 28px;
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+
+            .info-container p {
+                margin-left: 20px;
+                margin-bottom: 10px;
+                white-space: pre-wrap;
+            }
+
+            .button-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .button-container a {
+                display: inline-block;
+                margin-right: 10px;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="header">
+            <h2><a th:href="@{/dashboard}" style="text-decoration: none; color:#fff;">Progress</a></h2>
+            <div id="menu">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="/questions/all">Questions</a>
+                        <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                        <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                        <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
+                        <a href="/splits/all">Splits</a>
+                        <a href="/info/all">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <a href="all">Announcements</a>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-container">
+            <h1>Gym Information</h1>
+            <div th:each="info : ${infoList}" th:if="${info.id == 1 or info.id == 2}">
+                <h2 th:text="${info.title}"></h2>
+                <p th:text="${info.description}"></p>
+                <img th:src="${info.image}" />
+                <p>Last updated: <span th:text="${info.date}"></span></p>
+            </div>
+        </div>
+
+        <div class="button-container" sec:authorize="hasRole('OWNER')">
+            <a th:href="@{/info/id={id}(id=1)}">Edit Gym Message</a>
+            <a th:href="@{/info/id={id}(id=2)}">Edit Gym Facility</a>
+        </div>
+    </body>
+</html>

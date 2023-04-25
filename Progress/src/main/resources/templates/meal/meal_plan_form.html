@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+        <title>Meal Post</title>
+        <link rel="stylesheet" href="/css/styleJames.css"> 
+    </head>
+
+    <body>
+        <div id="header">
+            <a class="title" href="/dashboard"><h2>Progress</h2></a>
+
+            <div id="menu">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="/questions/all">Questions</a>
+                        <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                        <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                        <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
+                        <a href="/splits/all">Splits</a>
+                        <a href="/info/all">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div id="main">
+            <div id="title">
+                <h3>Create New Meal Plan Post</h3>
+            </div>
+
+            <div class="postForm">
+                <form action="http://localhost:8080/meal/createMealPost" method="post">
+                    
+                    <input id="user_id" name="user_id" type="number" th:value="${currentUser.id}" hidden >
+
+                    <br>
+
+                    <label for="text">Content for Meal Plan </label>
+                    <input id="text" type="text" name="text" placeholder="Enter Meal Plan" required/>
+
+                    <br>
+
+                    <input class="button" type="submit">
+                </form>
+        </div>
+        </div>
+    </body>
+</html>

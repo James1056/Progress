@@ -19,7 +19,7 @@
   Posting videos,
   Reacting to posts,
   Publicizing services (i.e. personal training),
-  Differnent users of different levels (each level has different features)
+  Different users of different levels (each level has different features)
   
   
 ![Progress_UseCaseDiagram](https://user-images.githubusercontent.com/71701375/217885071-f3f68d5c-fb6e-4308-b413-a0237af31d84.jpg)

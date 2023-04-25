@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Post</title>
+    <link rel="stylesheet" th:href="@{/css/stylecheck.css}"> 
+</head>
+<body>
+    <div id="header">
+        <h2><a th:href="@{/dashboard}">Progress</a></h2>
+
+        <div id="menu">
+            <div class="hamburger">
+                <button class="ham-button"></button>
+                <div class="drop-cont">
+                    <a href="/questions/all">Questions</a>
+                    <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                    <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                    <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                    <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                    <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
+                    <a href="/splits/all">Splits</a>
+                    <a href="/info/all">Gym Info</a>
+                    <a href="/meal/mealPlan">Meal Plan</a>
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div id="main">
+        <div id="title">
+            <h3>Create Post</h3>   
+            <a th:href="@{/trainer-vids/all/id=4}"><button class="post-But">Return</button></a>
+        </div>
+
+        <div class="postForm">
+            <form action="/trainer-vids/create" method="post" id="new-vid">
+
+                <label for="url"><b>Video URL:<hr></b></label>
+                <input type="text" id="url" name="url" placeholder="URL">
+
+                <br>
+
+                <label for="description"><b>Description:<hr></b></label>
+                <textarea id="description" name="description" rows="5" cols="50" placeholder="What the video about?"></textarea>
+
+                <br>
+
+                <input type="hidden" name="youtubeId" id="youtubeId" value ="">
+                <input type="hidden" name="trainerId" id="trainerId" th:value="${currentUser.id}">
+                
+
+                <label for="fitnessLevel"><b>Who's This Video For?</b></label><br>
+                <div class="formRadio">
+                    <input type="radio" name="fitnessLevel" id="beginner" value="1">
+                    <label for="beginner">Beginner | </label>
+                    <input type="radio" name="fitnessLevel" id="intermediate" value="2">
+                    <label for="intermediate">Intermediate | </label>
+                    <input type="radio" name="fitnessLevel" id="Advanced" value="3">
+                    <label for="Advanced">Advanced</label>
+                </div>
+
+                <br>
+
+
+                <input class="button" onclick="beforeSubmit()" value="Submit" style="text-align: center;">
+
+                
+            </form>
+    </div>
+    </div>
+
+    <script>
+        function beforeSubmit() {
+            
+            var url = document.getElementById("url").value;
+            document.getElementById("youtubeId").value = url.split("v=")[1].substring(0,11);
+            document.getElementById("new-vid").submit();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+        <meta charset="UTF-8">
+        <title>Create New Info</title>
+        <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #a1a1a1;
+                display: flex;
+                flex-direction: column;
+                margin: 0px;
+                font-family: sans-serif;
+            }
+            .form-container {
+                background-color: #fff;
+                margin: 20px;
+                padding: 20px;
+            }
+            label {
+                font-weight: bold;
+            }
+            input[type=text], textarea, input[type=url] {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
+            .counter {
+                float: right;
+                font-size: 14px;
+                font-weight: bold;
+                color: #999;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <h2><a th:href="@{/dashboard}" style="text-decoration: none; color:#fff;">Progress</a></h2>
+            <div id="menu">
+                <div class="hamburger">
+                    <button class="ham-button"></button>
+                    <div class="drop-cont">
+                        <a href="/questions/all">Questions</a>
+                        <a href="/partner/partnerRequests" th:unless="${currentUser.fitnessLevel ==  4}">Partner Requests</a>
+                        <a href="/trainers/all"sec:authorize="hasRole('NO_TRAINER')">Find a Trainer</a>
+                        <a href="/trainers/all"sec:authorize="hasAnyRole('TRAINER', 'OWNER')">Trainer Ads</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.trainerId})}" sec:authorize="hasRole('HAS_TRAINER')">Training Videos</a>
+                        <a th:href="@{/trainer-vids/all/id={id}(id=${currentUser?.id})}" sec:authorize="hasRole('TRAINER')">Training Videos</a>
+                        <a href="/splits/all">Splits</a>
+                        <a href="/info/all">Gym Info</a>
+                        <a href="/meal/mealPlan">Meal Plan</a>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>Create New Info</h1>
+            <form th:action="@{/info/create}" method="post">
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="5" required></textarea>
+                    <span class="counter">5000 characters remaining</span>
+                </div>
+                <div>
+                    <label for="image">Image URL:</label>
+                    <input type="url" id="image" name="image" required>
+                </div>
+                <div style="display:flex;justify-content: space-between">
+                    <button class="button-24" onclick="window.location.href = '/info/all'">Back to List</button>
+                    <button type="submit" class="button-24">Create</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            const description = document.getElementById('description');
+            const counter = document.querySelector('.counter');
+            const maxLength = 5000;
+
+            description.addEventListener('input', function () {
+                const remaining = maxLength - this.value.length;
+                counter.innerHTML = remaining + ' characters remaining';
+            });
+        </script>
+    </body>
+</html>
