@@ -22,15 +22,16 @@ public class Split {
 
 
     private int id;
-    private int user_id;
+    private int userId;
     private String text;
     private String title;
     @Transient
     private User user;
 
-    public Split(int id, String text, String title) {
+    public Split(int id, String text, String title, int userId) {
         this.id = id;
         this.text = text;
         this.title = title;
+        this.userId = userId;
     }
 }

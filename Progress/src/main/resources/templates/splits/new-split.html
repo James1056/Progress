@@ -55,6 +55,8 @@
                         <label for="text">Split:</label>
                         <input type="text" class="form-control" name="text" id="text" placeholder="Enter your split"></input>
                     </div>
+
+                    <input type="hidden" name="userId" id="userId" th:value="${currentUser.id}" >
                     <button type="submit" class="btn btn-primary">Post</button>
                 </form>
 

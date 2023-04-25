@@ -16,14 +16,14 @@ public class SplitService {
     public List<Split> getAllSplits() {
         List<Split> splitList = repo.findAll();
         for (Split split : splitList) {
-            split.setUser(userRepo.findUserById(split.getUser_id()));
+            split.setUser(userRepo.findUserById(split.getUserId()));
         }
         return splitList;
     }
 
     public Split getSplit(long splitId) {
         Split split = repo.getReferenceById(splitId);
-        split.setUser(userRepo.findUserById(split.getUser_id()));
+        split.setUser(userRepo.findUserById(split.getUserId()));
         return split;
     }
 

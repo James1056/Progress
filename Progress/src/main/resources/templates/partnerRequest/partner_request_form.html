@@ -40,7 +40,7 @@
             </div>
 
             <div class="postForm">
-                <form action="http://localhost:8080/partner/createPartnerPost" method="post">
+                <form th:action="@{/partner/createPartnerPost}" method="post">
                     
                     <input id="user_id" name="user_id" type="number" th:value="${currentUser.id}" hidden >
 
